@@ -2,18 +2,14 @@
 Wiki-like personal knowledge management tool running locally in browser
 
 # Install & first use
-- Just copy the single ```dist/wiki.html``` file to any local folder, and open
-# it in your favourite browser. 
-- It is advised to add a new page with the title ```Main```. This will serve
-# as a "homepage" in the future. 
+- Just copy the single ```dist/wiki.html``` file to any local folder, and open it in your favourite browser. 
+- It is advised to add a new page with the title ```Main```. This will serve as a "homepage" in the future. 
 
 # General instructions on use
 - You can use the markdown syntax on the pages
 - You can refer to pages by their names within ```[]```
-- If you refer to a non-existing page, you can create it, by clicking on the
-link
-- You can use simple diagrams by following the mermaid syntax within a code
-block
+- If you refer to a non-existing page, you can create it, by clicking on the link
+- You can use simple diagrams by following the mermaid syntax within a code block
 
 
 # Credits
