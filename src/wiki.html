@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js"></script>
+  <link rel="stylesheet" href="./src/wiki.css">
+  <link rel="stylesheet" href="https://cdn.rawgit.com/knsv/mermaid/7.0.0/dist/mermaid.forest.css">
+  <script src="https://cdn.rawgit.com/knsv/mermaid/7.0.0/dist/mermaid.min.js"></script>
+  <script src="./src/wiki.js"></script>
+  <title></title>
+</head>
+
+<body>
+<div id="navi">
+  <div class="navi_table">
+    <div class="navi_tablecell">
+      <input type="button" id="navi_list" value="list" />
+      <input type="button" id="navi_addnew" value="add new" />
+      <input type="button" id="navi_todolist" value="todos" />
+      <input type="file" id="navi_file" hidden />
+    </div>
+    <div class="navi_tablecell" style=" width: 140px;">
+      <span id="navi_freespace"></span>
+      <img alt="settings" id="navi_settings" class="navi_settings" src="data:image/png;base64,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">
+    </div>
+  </div>
+  <div id="breadcrumb"></div>
+</div>
+<div id="main">
+  <div id="content"></div>
+  <div id="edit" hidden>
+  WikiWord: <input type="textbox" id="edit_wikiword" /><br/>
+  <textarea id="edit_mdtext" iblockstart=0 iblockend=0 ></textarea><br/>
+  <input type="hidden" id="edit_counter" value=0/>
+  <input type="button" id="edit_save" value="Save changes"/>
+  <input type="button" id='edit_cancel' value='Cancel'/> <br/>
+  <div id="help">
+    <h1>Help</h1>
+    <div class="help_table">
+      <div class="help_table_cell">Headlines: start with #</div>
+      <div class="help_table_cell">Lists: * or - at the beginning of the line</div>
+      <div class="help_table_cell">Ordered lists: 1. at the beginning of the line</div>
+    </div>
+    <div class="help_table">
+      <div class="help_table_cell">Styling: *italic*, **bold**, ***bold-italic***</div>
+      <div class="help_table_cell">Refer to a wikiword: [WikiWord]</div>
+      <div class="help_table_cell"><a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Markdown</a></div>
+    </div>
+  </div>
+  </div>
+
+</div>
+<div id="footer">&copy; BobZGibb 2017</div>
+</body>
+</html>
