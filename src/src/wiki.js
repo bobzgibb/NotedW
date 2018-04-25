@@ -5,7 +5,7 @@ var config = {
       htmlLabels:true
   }
 };
-mermaid.initialize(config);
+//mermaid.initialize(config);
 
 var gTemp = []
 var LSprefix = "wiki.";
@@ -14,7 +14,7 @@ window.onload=function(){
 
 $("#navi_list").click(function() {
   listItems();
-  //25QhtGLrjCAAAAAAAAAAFTwzZC6QNY4LYeZkgEKOAemg18mHpN8g0FAS_o9CdLpH
+  
 });
 
 $(document).on('click', "#content_head_home", function() {
@@ -636,7 +636,6 @@ function processGraph(article) {
   while (match = exp.exec(article)) {
     aResWithTag.push(match[0]);
     aResWithoutTag.push(match[1].trim());
-    console.log(match[1]);
   }
 
 
@@ -662,7 +661,56 @@ function displayGraph(article) {
 
   return article;
 }
+    
+function processBPMN(article) {
+  var exp = /(?:<bpmn>)([\s\S]+?)(?:<\/bpmn>)/gm;
+  var aResWithTag = [];
+  var aResWithoutTag = [];
+  var match;
+  while (match = exp.exec(article)) {
+    aResWithTag.push(match[0]);
+    aResWithoutTag.push(match[1].trim());
+    //console.log(match[1]);
+  }
 
+
+  if (aResWithTag === null) {}
+  else {
+    for (var i=0; i<aResWithTag.length; i++) {
+      article = article.replace(aResWithTag[i], "<div id='bpmn_" + i + "' class='bpmn_viewer'></div>" );
+    }
+    gTemp = aResWithoutTag;
+  }
+
+  return article;
+}
+
+function displayBPMN(article) {
+
+  var aResWithoutTag = gTemp;
+  console.log(aResWithoutTag.length);
+  for (var i=0; i<aResWithoutTag.length; i++) {
+
+      //mermaid.init();
+      var bpmnViewer = new BpmnJS({
+          container: '#bpmn_'+i
+      });
+      // import diagram
+      bpmnViewer.importXML(aResWithoutTag[i], function(err) {
+        if (err) {
+            return console.error('could not import BPMN 2.0 diagram', err);
+        }
+          // access viewer components
+        var canvas = bpmnViewer.get('canvas');
+          // zoom to fit full viewport
+        canvas.zoom('fit-viewport');
+
+      });
+    
+  }
+  return article;
+}
+    
 $(document).on('click', "div.mermaid", function() {
     var svg = $(this).html();
     svg = '<?xml version="1.0" standalone="no"?><?xml-stylesheet type="text/css" href="https://cdn.rawgit.com/knsv/mermaid/7.0.0/dist/mermaid.forest.css"?>' + svg;
@@ -678,12 +726,19 @@ function displayArticle(wikiword) {
     var article = JSON.parse(localStorage.getItem(LSprefix + wikiword));
     var renderer = new marked.Renderer();
       renderer.code = function (code, language) {
-        if(code.trim().match(/^sequenceDiagram/)||code.match(/^graph/)||code.match(/^gantt/)){
-           return '<graph>'+code+'</graph>';
+        //if(code.trim().match(/^sequenceDiagram/)||code.match(/^graph/)||code.match(/^gantt/)){
+        //   return '<graph>'+code+'</graph>';
+        //} else 
+        if(code.trim().match(/^bpmn/)){
+           return '<bpmn>'+code+'</bpmn>';
+        } else{
+          return '<pre><code>'+code+'</code></pre>';
         }
+        
       };
     var md_article = marked(article, {renderer:renderer});
-    md_article = processGraph(md_article);
+    //md_article = processGraph(md_article);
+    md_article = processBPMN(md_article);
     md_article = linkWikiWords(md_article);
     md_article = beautifyToDos(md_article);
     md_article = createCollapsibleDivs(md_article, wikiword);
@@ -696,7 +751,8 @@ function displayArticle(wikiword) {
 
     $("#content_article").append("<br/><br/><div id='actionbar'><input type='button' wikiword='"+wikiword+"' id='content_edit' value='Edit'> <input type='button' wikiword='"+wikiword+"' id='content_delete' value='Delete'></div>");
     addItemToBreadCrumb(wikiword);
-    displayGraph(md_article);
+    //displayGraph(md_article);
+    displayBPMN(md_article);
 }
 
 function main() {
