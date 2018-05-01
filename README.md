@@ -12,6 +12,9 @@ Wiki-like personal knowledge management tool running locally in browser - with b
 - If you refer to a non-existing page, you can create it, by clicking on the link
 - You can use simple diagrams by following the mermaid syntax within a code block
 - External links can be named: ```[visible name](url)```
+- For the use of graphs, Gantt-charts, refer to [mermaid](https://github.com/knsv/mermaid) documentation. The annotation shall be used within a ```code block```
+- It is possible to embed BPMN diagram also within a ```code block```. Make sure to use the ```bpmn``` before the XML to be embedded.
+
 
 
 # Credits
@@ -19,6 +22,7 @@ Wiki-like personal knowledge management tool running locally in browser - with b
 Many thanks to the
 - [marked](https://github.com/chjj/marked) project for the Markdown parser,
 - [mermaid](https://github.com/knsv/mermaid) project for the graph library,
+- [BPMN.io](https://github.com/bpmn-io) for the BPMN.js viewer and editor library
 - and to the StackExchange community for the hundreds of already asked and answered questions, which helped me along.
 (No new question was posted, and no living animals were harmed during
 development.)
