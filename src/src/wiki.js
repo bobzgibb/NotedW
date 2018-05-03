@@ -4,6 +4,7 @@ requirejs(["wiki-lib"], function (wikilib) {
 });
 */
 
+window.onload = function () {
 var config = {
     startOnLoad:false,
     flowchart:{
@@ -12,6 +13,7 @@ var config = {
     }
 };
 mermaid.initialize(config);
+}
 
 window.addEventListener('message', function (event) {
     var bpmnXML = event.data;
@@ -23,12 +25,14 @@ var aGraph_temp = [];
 var aBPMN_temp = [];
 var LSprefix = "wiki.";
 
-window.onload =function(){
+//window.onload =function(){
+//var jq = function() {
 
 $("#navi_list").click(function() {
   listItems();
   
 });
+
 
 $(document).on('click', "#content_head_home", function() {
   main();
@@ -161,8 +165,6 @@ $.when(d1).done(function (a1) {
     }
 
     $("#restore_itemlist").append("   restored.");
-
-
 });
 });
 
@@ -354,14 +356,14 @@ $(document).on('click', ".bpmn_viewer", function() {
     bpmnID = "#t_"+bpmnID;
     console.log(bpmnID);
     var bpmnXML = $(bpmnID).html();
-    bpmnXML = window.atob(bpmnXML);
+    bpmnXML = decodeURIComponent(escape(window.atob(bpmnXML)));
     bpmnXML = bpmnXML.substring(5);
     localStorage.setItem("wiki.temp.bpmn", bpmnXML);
     $("#overlay").css("display", "block");
     localStorage.setItem("wiki.temp.wikiword", $("#content_edit").attr("wikiword"));
     localStorage.setItem("wiki.temp.bpmnIndexInArticle", bpmnID.split("_")[2]);
     
-    var win = window.open("modeler.html", "bpmneditor", "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=800,height=700,top=50,left=50");
+    var win = window.open("wiki.html?page=modeler", "bpmneditor", "toolbar=no,location=yes,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=800,height=700,top=50,left=50");
 
 });
     
@@ -377,7 +379,8 @@ $(document).on('click', "div.mermaid", function() {
 
 main();
 
-};
+//};
+//jq.call();
 
 function listDropboxbackups() {
   var dropbox_key = localStorage.getItem("NotedW_Dropbox_key");
@@ -718,10 +721,10 @@ function processBPMN(article) {
   else {
     $("#tempfields").empty();
     for (var i=0; i<aResWithTag.length; i++) {
-      article = article.replace(aResWithTag[i], "<div id='bpmn_" + i + "' class='bpmn_viewer'></div>" );
-      //console.log("bpmn_" + i);
-      $("#tempfields").append($("<div id='t_bpmn_"+i+"' class='tempbpmn'>"));
-      $("#t_bpmn_"+i).html(window.btoa(aResWithoutTag[i]));
+        article = article.replace(aResWithTag[i], "<div id='bpmn_" + i + "' class='bpmn_viewer'></div>" );
+        //console.log("bpmn_" + i);
+        $("#tempfields").append($("<div id='t_bpmn_"+i+"' class='tempbpmn'>"));
+        $("#t_bpmn_"+i).html(window.btoa(unescape(encodeURIComponent(aResWithoutTag[i]))));
     }
     aBPMN_temp = aResWithoutTag;
   }
