@@ -363,7 +363,7 @@ $(document).on('click', ".bpmn_viewer", function() {
     localStorage.setItem("wiki.temp.wikiword", $("#content_edit").attr("wikiword"));
     localStorage.setItem("wiki.temp.bpmnIndexInArticle", bpmnID.split("_")[2]);
     
-    var win = window.open("wiki.html?page=modeler", "bpmneditor", "toolbar=no,location=yes,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=800,height=700,top=50,left=50");
+    var win = window.open("modeler.html", "bpmneditor", "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=800,height=700,top=50,left=50");
 
 });
     
