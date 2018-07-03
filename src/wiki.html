@@ -10,10 +10,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/7.1.2/mermaid.min.js"></script> 
     <link rel="stylesheet" href="./src/wiki.css">
 
-    <!--script src="https://unpkg.com/bpmn-js@1.3.0/dist/bpmn-modeler.development.js"></script-->
-  
-    <!--link rel="stylesheet" href="https://unpkg.com/bpmn-js@1.3.0/dist/assets/diagram-js.css">
-    <link rel="stylesheet" href="https://unpkg.com/bpmn-js@1.3.0/dist/assets/bpmn-font/css/bpmn.css"-->
+    <link rel="stylesheet" href="https://unpkg.com/bpmn-js@1.3.0/dist/assets/diagram-js.css">
+    <link rel="stylesheet" href="https://unpkg.com/bpmn-js@1.3.0/dist/assets/bpmn-font/css/bpmn.css">
   
   <title></title>
 </head>
@@ -21,7 +19,7 @@
 <body>
 <div id="navi">
   <div class="navi_table">
-    <div class="navi_tablecell">
+    <div class="navi_tablecell" id="navi_buttons">
       <input type="button" id="navi_list" value="list" />
       <input type="button" id="navi_addnew" value="add new" />
       <input type="button" id="navi_todolist" value="todos" />
@@ -60,7 +58,10 @@
 
 </div>
 <div id="footer">&copy; BobZGibb 2017</div>
-      <script src="https://unpkg.com/bpmn-js@1.3.0/dist/bpmn-viewer.development.js"></script>
+<!-- modeler distro -->
+<script src="https://unpkg.com/bpmn-js@1.2.1/dist/bpmn-modeler.development.js"></script>
+
+<!--     <script src="https://unpkg.com/bpmn-js@1.3.0/dist/bpmn-viewer.development.js"></script> -->
 
 <div id="overlay" style="display:none;"> </div>
     <script src="./src/wiki-lib.js"></script>  

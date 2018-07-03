@@ -4,15 +4,17 @@ requirejs(["wiki-lib"], function (wikilib) {
 });
 */
 
+
 window.onload = function () {
-var config = {
-    startOnLoad:false,
-    flowchart:{
-        useMaxWidth:true,
-        htmlLabels:true
-    }
-};
-mermaid.initialize(config);
+    "use strict";
+    var config = {
+        startOnLoad: false,
+        flowchart: {
+            useMaxWidth: true,
+            htmlLabels: true
+        }
+    };
+    mermaid.initialize(config);
 }
 
 window.addEventListener('message', function (event) {
@@ -24,6 +26,7 @@ window.addEventListener('message', function (event) {
 var aGraph_temp = [];
 var aBPMN_temp = [];
 var LSprefix = "wiki.";
+var bpmnModeler;
 
 //window.onload =function(){
 //var jq = function() {
@@ -32,7 +35,6 @@ $("#navi_list").click(function() {
   listItems();
   
 });
-
 
 $(document).on('click', "#content_head_home", function() {
   main();
@@ -354,7 +356,7 @@ $(document).on('click', "a.wikiword", function() {
 $(document).on('click', ".bpmn_viewer", function() {
     var bpmnID = $(this).attr("id");
     bpmnID = "#t_"+bpmnID;
-    console.log(bpmnID);
+    //console.log(bpmnID);
     var bpmnXML = $(bpmnID).html();
     bpmnXML = decodeURIComponent(escape(window.atob(bpmnXML)));
     bpmnXML = bpmnXML.substring(5);
@@ -363,7 +365,7 @@ $(document).on('click', ".bpmn_viewer", function() {
     localStorage.setItem("wiki.temp.wikiword", $("#content_edit").attr("wikiword"));
     localStorage.setItem("wiki.temp.bpmnIndexInArticle", bpmnID.split("_")[2]);
     
-    var win = window.open("modeler.html", "bpmneditor", "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=800,height=700,top=50,left=50");
+    var win = window.open("wiki.html?page=modeler", "bpmneditor", "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=800,height=700,top=50,left=50");
 
 });
     
@@ -377,6 +379,13 @@ $(document).on('click', "div.mermaid", function() {
 
 });
 
+$(document).on('click', "#bpmn_close_cancel", function() {
+    window.opener.postMessage("none","*" );
+    window.self.close();
+});
+$(document).on('click', "#bpmn_close_save", function() {
+    exportDiagram();
+});
 main();
 
 //};
@@ -735,7 +744,7 @@ function displayBPMN(article) {
 
   var aResWithoutTag = aBPMN_temp;
   for (var i=0; i<aResWithoutTag.length; i++) {
-    var bpmnViewer = new BpmnJS({
+    var bpmnViewer = new BpmnJS.Viewer({
       container: '#bpmn_'+i
     });
     
@@ -788,13 +797,45 @@ function displayArticle(wikiword) {
 }
 
 function main() {
-  if (localStorage.getItem(LSprefix + "Main") === null) {
-    listItems();
-  } else {
-    displayArticle("Main");
-  }
-  updateFreeSpace();
+  var oURL = new URL(window.location.href);
+  var page = oURL.searchParams.get("page");    
+  if (page && page=="modeler") {
+    $("#main").empty();
+    $("#navi_buttons").empty();
+    $("#navi_buttons").append("<input type='button' id='bpmn_close_save' value='Save & close' /> ");
+    $("#navi_buttons").append("<input type='button' id='bpmn_close_cancel' value='Cancel edit & close' /> ");
+    $("#breadcrumb").text("BPMN diagram #" + localStorage.getItem("wiki.temp.bpmnIndexInArticle") + " @"+ localStorage.getItem("wiki.temp.wikiword"));
+    updateFreeSpace();  
+    $('#main').append('<div id="bpmn_editor_canvas"></div>');
+    $('#bpmn_editor_canvas').height($("#main").parent().outerHeight()-100);
+    var bpmnXML = localStorage.getItem("wiki.temp.bpmn");
 
+    if (bpmnXML.length<6) {
+        bpmnXML = '<?xml version="1.0" encoding="UTF-8"?><bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd" id="sample-diagram" targetNamespace="http://bpmn.io/schema/bpmn"><bpmn2:process id="Process_1" isExecutable="false"></bpmn2:process><bpmndi:BPMNDiagram id="BPMNDiagram_1"><bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1">    </bpmndi:BPMNPlane>  </bpmndi:BPMNDiagram></bpmn2:definitions>';
+    } else {
+        bpmnXML=bpmnXML.replace('<!--?xml version="1.0" encoding="UTF-8"?-->','<?xml version="1.0" encoding="UTF-8"?>')
+    }
+        
+    // modeler instance
+    bpmnModeler = new BpmnJS({
+        container: '#bpmn_editor_canvas',
+        keyboard: {
+            bindTo: window
+        }
+    });
+
+    console.log(bpmnXML);
+    openDiagram(bpmnXML);  
+      
+      
+  } else {
+    if (localStorage.getItem(LSprefix + "Main") === null) {
+      listItems();
+    } else {
+      displayArticle("Main");
+    }
+    updateFreeSpace();
+  }
 }
 
 function updateBPMNInArticle(bpmnXML) {
@@ -830,4 +871,48 @@ function updateBPMNInArticle(bpmnXML) {
     localStorage.removeItem("wiki.temp.bpmnIndexInArticle");
     localStorage.removeItem("wiki.temp.bpmn");
     
+}
+
+window.onbeforeunload = function(){
+    window.opener.postMessage("none","*" );
+}
+
+window.addEventListener("beforeunload", function(e){
+    window.opener.postMessage("none","*" ); 
+}, false);
+
+function openDiagram(bpmnXML) {
+
+    // import diagram
+    bpmnModeler.importXML(bpmnXML, function(err) {
+
+    if (err) {
+        return console.error('could not import BPMN 2.0 diagram', err);
+    }
+
+    // access modeler components
+    var canvas = bpmnModeler.get('bpmn_editor_canvas');
+    var overlays = bpmnModeler.get('overlays');
+
+
+    // zoom to fit full viewport
+    canvas.zoom( 'fit-viewport');
+
+    });
+}
+
+function exportDiagram() {
+
+    bpmnModeler.saveXML({ format: true }, function(err, xml) {
+
+        if (err) {
+            return console.error('could not save BPMN 2.0 diagram', err);
+        }
+
+        //alert(xml);
+        var orig = window.opener;
+        orig.postMessage(xml,"*" );
+        window.self.close();    
+        //console.log('DIAGRAM', xml);
+    });
 }
