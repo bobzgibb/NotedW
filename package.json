@@ -20,12 +20,12 @@
     "mermaid": "^7.1.2",
     "bpmn-js": "^1.2.1"    
   },
-  "keywords": {
+  "keywords": [
     "markdown",
     "wiki",
     "notes"
-  },
-  "tags": {
+  ],
+  "tags": [
     "markdown",
     "wiki",
     "notes",
@@ -33,5 +33,5 @@
     "javascript",
     "BPMN",
     "mermaid"    
-  }
+  ]
 }
