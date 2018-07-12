@@ -365,7 +365,7 @@ $(document).on('click', ".bpmn_viewer", function() {
     localStorage.setItem("wiki.temp.wikiword", $("#content_edit").attr("wikiword"));
     localStorage.setItem("wiki.temp.bpmnIndexInArticle", bpmnID.split("_")[2]);
     
-    var win = window.open("wiki.html?page=modeler", "bpmneditor", "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=800,height=700,top=50,left=50");
+    var win = window.open(document.URL + "?page=modeler", "bpmneditor", "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=800,height=700,top=50,left=50");
 
 });
     
@@ -631,7 +631,7 @@ function linkWikiWords(article) {
   return article;
 }
 
-function linkify(wikiword, breadcrumb = false) {
+function linkify(wikiword, breadcrumb=false) {
   var linkedWikiWord = "";
   if (breadcrumb) {
     linkedWikiWord = "<a class='wikiword breadcrumb' id='"+ wikiword +"'>" + wikiword + "</a>";
