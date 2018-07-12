@@ -1,0 +1,37 @@
+{
+  "name": "NotedW",
+  "version": "0.9",
+  "description": "NotedW - personal wiki-like note taking SPA with BPMN and other graph features",
+  "main": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bobzgibb/NotedW.git"
+  },
+  "author": "Bob Z. Gibb",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bobzgibb/NotedW/issues"
+  },
+  "homepage": "https://github.com/bobzgibb/NotedW#README.md",
+  "private": true,
+  "dependencies": {
+    "jquery": "^3.3.0",
+    "marked": "^0.3.19",
+    "mermaid": "^7.1.2",
+    "bpmn-js": "^1.2.1"    
+  },
+  "keywords": {
+    "markdown",
+    "wiki",
+    "notes"
+  },
+  "tags": {
+    "markdown",
+    "wiki",
+    "notes",
+    "html",
+    "javascript",
+    "BPMN",
+    "mermaid"    
+  }
+}
