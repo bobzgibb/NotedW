@@ -51,6 +51,9 @@ bpmn
 ```
 The empty space will be filled with xml data. The page can be edited manually afterwards. To ensure the XML consistency, it is advised, to leave the BPMN codeblock unabridged.  
 
+## Detailed help
+You can find more examples with some screenshots in the [docs](docs/index.md) folder. 
+
 # Credits
 Many thanks to the
 - [marked](https://github.com/chjj/marked) project for the Markdown parser,
