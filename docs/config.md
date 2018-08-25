@@ -2,4 +2,4 @@
 
 ## Some settings, hardcoded
 
-![Config page](/res/NotedW_config_page.png?raw=true)
+![Config page](res/NotedW_config_page.png?raw=true)
