@@ -1,5 +1,6 @@
 # NotedW
 Wiki-like personal knowledge management tool running locally in browser - with backup possibility to DropBox
+![SPA](res/NotedW_compact.png?raw=true)
 
 # Install & first use
 - Just copy the single ```dist/notedw_dist.html``` file to any local folder, and open it in your favourite browser. 
