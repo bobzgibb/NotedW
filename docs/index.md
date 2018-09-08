@@ -6,6 +6,8 @@ Capturing and transferring knowledge is often better in some graphical formats. 
 
 NotedW is an experiment to put all goodies together in one SPA, into one single interface and into one single "database". 
 
+![SPA](res/NotedW_compact.png?raw=true)
+
 # NotedW usage information 
 
 Do not use NotedW if you cannot accept the following limitations. 
