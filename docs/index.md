@@ -6,8 +6,6 @@
 - [Configuration settings](config.md)
 - [Basic editing](edit.md)
 
-
-
 # Foreword
 
 These days the corporate IT security departments are getting more and more __creative__ in stripping every possible rights from the poor users. There are many good note taking softwares and applications, but one cannot use these in the workplace. There are also many web-based note taking tools - but they are hosting the information in the cloud, i.e. outside the company. Such breach could easily lead to HR consequences. Better stay on the local computer. 
