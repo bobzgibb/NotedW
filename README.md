@@ -5,20 +5,15 @@ Wiki-like personal knowledge management tool running locally in browser - with b
 # Install & first use
 - Just copy the single ```dist/notedw_dist.html``` file to any local folder, and open it in your favourite browser. 
 - It is advised to add a new page with the title ```Main```. This will serve as a "homepage" in the future. When clicking the Home button, this ```Main``` will be shown.
-- You can configure the backup option by clicking the Configuration icon top-right. The fields are - hopefully - self-explanatory.
 
-# General instructions on use
-- Start with the "add new" button - add the page, with title ```Main```
-- You can use the markdown syntax on the pages
-- It is possible to edit only segments of a page. Level 1 or Level 2 markdown headers create editable segments
-- You can refer to pages by their names within ```[]``` 
-- If you refer to a non-existing page, you can create it, by clicking on the link
-- Navigate between the pages by using their embedded reference, by the breadcrumbs, or by listing all pages
-- External links can be named: ```[visible name](url)```
-- You can use simple diagrams by following the mermaid syntax within a code block
-- For the use of graphs, Gantt-charts, refer to [mermaid](https://github.com/knsv/mermaid) documentation. The annotation shall be used within a ```code block```
-- It is possible to embed BPMN diagram also within a ```code block```. Make sure to use the ```bpmn``` before the XML to be embedded.
-- Simple annotation for to do-s is also available. Use @@ before the text of the task. The task text is captured until the end of line.
+# Features
+- Markdown syntax on pages
+- Wiki-like page referencing (page names within ```[]``` )
+- Segment editing for Level 1 or Level 2 markdown headers (click on the Pencil icon)
+- Breadcrumbs and list of pages
+- Diagrams ([mermaid](https://github.com/knsv/mermaid) and [bpmn](https://github.com/bpmn-io) ) can be inserted in the pages within a ```code block```
+- Simple annotation for to do-s (@@ before the text of the task)
+- Dropbox backup possibility (click on cogwheel icon at the top right corner)
 
 # Some examples
 ## Create page reference with todo
