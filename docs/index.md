@@ -1,3 +1,13 @@
+# Content
+
+- Foreword
+- Important usage information
+- [Getting started with NotedW](firstuse.md)
+- [Configuration settings](config.md)
+- [Basic editing](edit.md)
+
+
+
 # Foreword
 
 These days the corporate IT security departments are getting more and more __creative__ in stripping every possible rights from the poor users. There are many good note taking softwares and applications, but one cannot use these in the workplace. There are also many web-based note taking tools - but they are hosting the information in the cloud, i.e. outside the company. Such breach could easily lead to HR consequences. Better stay on the local computer. 
@@ -8,7 +18,7 @@ NotedW is an experiment to put all goodies together in one SPA, into one single 
 
 ![SPA](res/NotedW_compact.png?raw=true)
 
-# NotedW usage information 
+# Important usage information 
 
 Do not use NotedW if you cannot accept the following limitations. 
 
@@ -23,12 +33,4 @@ The NotedW is intended for local use as a single page web-app. Because of this, 
 
 ### NotedW in online environment 
 An online version of NotedW is not (yet) planned. The app is not tested in online environment, the security risks are unknown. So if you plan to use it online by publishing under a URL - do it at your own risk, you have been warned. 
-
-# Content
-
-- [Getting started with NotedW](firstuse.md)
-- [Configuration settings](config.md)
-- [Basic editing](edit.md)
-
-
 
