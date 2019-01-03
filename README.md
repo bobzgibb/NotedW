@@ -1,9 +1,9 @@
 # NotedW
-Wiki-like personal knowledge management tool running locally in browser - with backup possibility to DropBox
+Wiki-like personal knowledge management tool running locally in browser - with backup possibility to local files (and hopefully to DropBox at some point in the future)
 ![SPA](docs/res/NotedW_compact.png?raw=true)
 
 # Install & first use
-- Just copy the single ```dist/notedw_dist.html``` file to any local folder, and open it in your favourite browser. 
+- Just copy the single ```dist/notedw_dist.html``` file to any local folder, and open it in your favourite browser.
 - It is advised to add a new page with the title ```Main```. This will serve as a "homepage" in the future. When clicking the Home button, this ```Main``` will be shown.
 
 # Features
@@ -13,7 +13,7 @@ Wiki-like personal knowledge management tool running locally in browser - with b
 - Breadcrumbs and list of pages
 - Diagrams ([mermaid](https://github.com/knsv/mermaid) and [bpmn](https://github.com/bpmn-io) ) can be inserted in the pages within a ```code block```
 - Simple annotation for to do-s (@@ before the text of the task)
-- Dropbox backup possibility (click on cogwheel icon at the top right corner)
+- Backup possibility (click on cogwheel icon at the top right corner)
 
 # Some examples
 ## Create page reference with todo
@@ -48,7 +48,7 @@ bpmn
 The empty space will be filled with xml data. The page can be edited manually afterwards. To ensure the XML consistency, it is advised, to leave the BPMN codeblock unabridged.  
 
 ## Detailed help
-You can find more examples with some screenshots in the [docs](docs/index.md) folder. 
+You can find more examples with some screenshots in the [docs](docs/index.md) folder.
 
 # Credits
 Many thanks to the
@@ -56,8 +56,7 @@ Many thanks to the
 - [mermaid](https://github.com/knsv/mermaid) project for the graph library,
 - [BPMN.io](https://github.com/bpmn-io) for the BPMN.js viewer and editor library
 - and to the StackExchange community for the hundreds of already asked and answered questions, which helped me along.
-(No new question was posted, and no living animals were harmed during
-development.)
+(No new question was posted during development.)
 
-This personal wiki / note-taking tool is created by Bob Gibb. You can contact me if you have
+This personal wiki / note-taking tool is created by Bob Z. Gibb. You can contact me if you have
 questions, suggestions, etc.
