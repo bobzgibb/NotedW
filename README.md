@@ -1,5 +1,6 @@
 # NotedW
 Wiki-like personal knowledge management tool running locally in browser - with backup possibility to local files (and hopefully to DropBox at some point in the future)
+
 ![SPA](docs/res/NotedW_compact.png?raw=true)
 
 # Install & first use
